@@ -1,0 +1,52 @@
+.transactions-box {
+  background: #f9f9fb;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  flex: 1;
+  height: 375px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.transactions-box h3 {
+  margin-bottom: 18px;
+  font-size: 16px;
+  color: #282886;
+  flex-shrink: 0;
+}
+
+.transaction {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+  flex-shrink: 0;
+}
+
+.transaction:last-child {
+  border-bottom: none;
+}
+
+.transaction p {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: #777;
+}
+
+.txn-category {
+  color: #635bff;
+}
+
+.txn-amount {
+  font-weight: 600;
+  color: #1e1e50;
+}
+
+.no-transactions {
+  font-size: 14px;
+  color: #999;
+  margin-top: 10px;
+}
