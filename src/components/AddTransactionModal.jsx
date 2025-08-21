@@ -1,37 +1,49 @@
-
-// AddTransactionModal.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./AddTransactionModal.css";
 
-function AddTransactionModal({ onClose, onSubmit }) {
+function AddTransactionModal({ onClose, onSubmit, initialData }) {
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("");
   const [type, setType] = useState("Expense");
   const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
 
-const handleSubmit = (e) => {
-  e.preventDefault();
-  const newTransaction = {
-    description,
-    amount: parseFloat(amount),
-    category,
-    type,
-    date
+  // Pre-fill form if editing an existing transaction
+  useEffect(() => {
+    if (initialData) {
+      setDescription(initialData.description);
+      setAmount(initialData.amount);
+      setCategory(initialData.category);
+      setType(initialData.type);
+      setDate(initialData.date);
+    }
+  }, [initialData]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const newTransaction = {
+      id: initialData?.id || Date.now(), // Keep original id if editing
+      description,
+      amount: parseFloat(amount),
+      category,
+      type,
+      date,
+      time: initialData?.time || new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    };
+
+    if (typeof onSubmit === "function") {
+      onSubmit(newTransaction);
+    }
+
+    onClose();
   };
-
-  if (typeof onSubmit === 'function') {
-    onSubmit(newTransaction);
-  }
-
-  onClose(); // close after adding
-};
 
   return (
     <div className="modal-overlay">
       <div className="modal">
-        <h2>Add Transaction</h2>
-        <p>Add a new income or expense transaction to track your finances.</p>
+        <h2>{initialData ? "Edit Transaction" : "Add Transaction"}</h2>
+        <p>{initialData ? "Edit your transaction details" : "Add a new income or expense transaction to track your finances."}</p>
 
         <form onSubmit={handleSubmit}>
           <label>Description</label>
@@ -82,8 +94,12 @@ const handleSubmit = (e) => {
           />
 
           <div className="modal-buttons">
-            <button type="button" onClick={onClose} className="cancel-btn">Cancel</button>
-            <button type="submit" className="submit-btn">Add Transaction</button>
+            <button type="button" onClick={onClose} className="cancel-btn">
+              Cancel
+            </button>
+            <button type="submit" className="submit-btn">
+              {initialData ? "Update Transaction" : "Add Transaction"}
+            </button>
           </div>
         </form>
       </div>

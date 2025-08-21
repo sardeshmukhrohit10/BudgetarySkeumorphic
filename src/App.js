@@ -1,4 +1,3 @@
-// App.js
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -29,6 +28,18 @@ function App() {
     .reduce((sum, txn) => sum + parseFloat(txn.amount), 0);
 
   const balance = income - expense;
+
+  const deleteTransaction = (txnToDelete) => {
+  setTransactions((prev) => prev.filter((txn) => txn !== txnToDelete));
+  };
+
+  const editTransaction = (updatedTxn) => {
+    setTransactions((prev) =>
+      prev.map((txn) =>
+        txn.id === updatedTxn.id ? updatedTxn : txn
+      )
+    );
+  };
 
   return (
     <Router>
@@ -70,6 +81,8 @@ function App() {
                 <TransactionHistory
                   transactions={transactions}
                   onAddTransaction={addTransaction}
+                  onDeleteTransaction={deleteTransaction}
+                  onEditTransaction={editTransaction}
                 />
               }
             />

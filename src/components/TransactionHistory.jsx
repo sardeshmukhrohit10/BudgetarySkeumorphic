@@ -7,6 +7,7 @@ function TransactionHistory({ transactions, onAddTransaction, onDeleteTransactio
   const [showModal, setShowModal] = useState(false);
   const [editingTxn, setEditingTxn] = useState(null);
   const [filter, setFilter] = useState("All");
+  const [search, setSearch] = useState("");
 
   const income = transactions
     .filter(txn => txn.type === "Income")
@@ -24,8 +25,12 @@ function TransactionHistory({ transactions, onAddTransaction, onDeleteTransactio
   };
 
   const filteredTransactions = transactions.filter((txn) => {
-    if (filter === "Income") return txn.type === "Income";
-    if (filter === "Expense") return txn.type === "Expense";
+    // Filter by type
+    if (filter === "Income" && txn.type !== "Income") return false;
+    if (filter === "Expense" && txn.type !== "Expense") return false;
+    // Filter by search (description or category)
+    if (search && !txn.description.toLowerCase().includes(search.toLowerCase()) &&
+        !txn.category.toLowerCase().includes(search.toLowerCase())) return false;
     return true;
   });
 
@@ -45,7 +50,12 @@ function TransactionHistory({ transactions, onAddTransaction, onDeleteTransactio
 
       <div className="transaction-table">
         <div className="table-header">
-          <input type="text" placeholder="Search transactions..." />
+          <input
+            type="text"
+            placeholder="Search transactions..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
           <select value={filter} onChange={(e) => setFilter(e.target.value)}>
             <option value="All">All Transactions</option>
             <option value="Income">Income</option>
@@ -64,8 +74,8 @@ function TransactionHistory({ transactions, onAddTransaction, onDeleteTransactio
             </tr>
           </thead>
           <tbody>
-            {filteredTransactions.map((txn, i) => (
-              <tr key={i}>
+            {filteredTransactions.map((txn) => (
+              <tr key={txn.id}>
                 <td>{txn.category}</td>
                 <td>{txn.description || "—"}</td>
                 <td>
@@ -88,10 +98,10 @@ function TransactionHistory({ transactions, onAddTransaction, onDeleteTransactio
 
       {showModal && (
         <AddTransactionModal
-          onClose={() => setShowModal(false)}
+          onClose={() => { setShowModal(false); setEditingTxn(null); }}
           onSubmit={(txn) => {
             if (editingTxn) {
-              onEditTransaction(txn);
+              onEditTransaction(txn); // txn now has proper id
             } else {
               onAddTransaction(txn);
             }
