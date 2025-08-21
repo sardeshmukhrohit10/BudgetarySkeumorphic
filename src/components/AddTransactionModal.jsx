@@ -8,14 +8,14 @@ function AddTransactionModal({ onClose, onSubmit, initialData }) {
   const [type, setType] = useState("Expense");
   const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
 
-  // Pre-fill form if editing an existing transaction
+  // Pre-fill when editing
   useEffect(() => {
     if (initialData) {
-      setDescription(initialData.description);
-      setAmount(initialData.amount);
-      setCategory(initialData.category);
-      setType(initialData.type);
-      setDate(initialData.date);
+      setDescription(initialData.description ?? "");
+      setAmount(String(initialData.amount ?? ""));
+      setCategory(initialData.category ?? "");
+      setType(initialData.type ?? "Expense");
+      setDate(initialData.date ?? new Date().toISOString().split("T")[0]);
     }
   }, [initialData]);
 
@@ -23,27 +23,32 @@ function AddTransactionModal({ onClose, onSubmit, initialData }) {
     e.preventDefault();
 
     const newTransaction = {
-      id: initialData?.id || Date.now(), // Keep original id if editing
+      id: initialData?.id || Date.now(),
       description,
       amount: parseFloat(amount),
       category,
       type,
       date,
-      time: initialData?.time || new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      time:
+        initialData?.time ||
+        new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
     };
 
-    if (typeof onSubmit === "function") {
-      onSubmit(newTransaction);
-    }
-
+    if (typeof onSubmit === "function") onSubmit(newTransaction);
     onClose();
   };
+
+  const isEdit = Boolean(initialData);
 
   return (
     <div className="modal-overlay">
       <div className="modal">
-        <h2>{initialData ? "Edit Transaction" : "Add Transaction"}</h2>
-        <p>{initialData ? "Edit your transaction details" : "Add a new income or expense transaction to track your finances."}</p>
+        <h2>{isEdit ? "Edit Transaction" : "Add Transaction"}</h2>
+        <p>
+          {isEdit
+            ? "Edit your transaction details."
+            : "Add a new income or expense transaction to track your finances."}
+        </p>
 
         <form onSubmit={handleSubmit}>
           <label>Description</label>
@@ -66,7 +71,11 @@ function AddTransactionModal({ onClose, onSubmit, initialData }) {
           />
 
           <label>Category</label>
-          <select value={category} onChange={(e) => setCategory(e.target.value)} required>
+          <select
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            required
+          >
             <option value="">Select a category</option>
             <option>Food & Groceries</option>
             <option>Health Insurance</option>
@@ -80,7 +89,11 @@ function AddTransactionModal({ onClose, onSubmit, initialData }) {
           </select>
 
           <label>Type</label>
-          <select value={type} onChange={(e) => setType(e.target.value)} required>
+          <select
+            value={type}
+            onChange={(e) => setType(e.target.value)}
+            required
+          >
             <option>Expense</option>
             <option>Income</option>
           </select>
@@ -98,7 +111,7 @@ function AddTransactionModal({ onClose, onSubmit, initialData }) {
               Cancel
             </button>
             <button type="submit" className="submit-btn">
-              {initialData ? "Update Transaction" : "Add Transaction"}
+              {isEdit ? "Update Transaction" : "Add Transaction"}
             </button>
           </div>
         </form>

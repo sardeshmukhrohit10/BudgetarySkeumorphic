@@ -23,7 +23,7 @@ body {
 }
 
 .add-transaction {
-  background: linear-gradient(to bottom, #635bff, #1e1e50);
+  background: #635bff;
   color: white;
   border: none;
   padding: 12px 24px;
