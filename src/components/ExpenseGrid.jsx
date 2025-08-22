@@ -9,6 +9,9 @@ const categories = [
   "Food & Groceries",
   "Donation",
   "Party",
+  "Rent",
+  "Salary",
+  "Health Insurance"
 ];
 
 function ExpenseGrid({ transactions }) {
