@@ -55,7 +55,6 @@ function TransactionHistory({
         subtitle="Manage and view all your financial transactions"
       />
 
-      {/* Filters + Table */}
       <div className="transaction-table">
         <div className="table-header">
           <input

@@ -28,6 +28,7 @@ export default function TaskPanel() {
   const allDone = checks.add && checks.edit && checks.del;
 
   const finish = () => {
+    if (!allDone) return;
     completeTask();
     window.open(SURVEY_URL, "_blank", "noopener");
   };
@@ -44,7 +45,7 @@ export default function TaskPanel() {
     }}>
       <div style={{fontWeight:700, marginBottom:8}}>{VARIANT.toUpperCase()} — Tasks</div>
       <ol style={{margin:"0 0 8px 16px"}}>
-        <li>{checks.add ? "✅" : "⬜"} Add 1 transactions</li>
+        <li>{checks.add ? "✅" : "⬜"} Add 1 transaction</li>
         <li>{checks.edit ? "✅" : "⬜"} Edit 1 transaction</li>
         <li>{checks.del ? "✅" : "⬜"} Delete 1 transaction</li>
       </ol>
@@ -64,7 +65,6 @@ export default function TaskPanel() {
         <button
           onClick={openOther}
           style={{background:"#f3f4f6", border:"1px solid #e5e7eb", padding:"8px 12px", borderRadius:10, fontWeight:600}}
-          title="Go to the other UI (keeps your code)"
         >
           Other UI
         </button>

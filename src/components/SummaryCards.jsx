@@ -12,7 +12,6 @@ function SummaryCards({
 
   return (
     <section className="summary-cards">
-      {/* Header row */}
       <div className="summary-header">
         <div className="summary-copy">
           <h2>{title}</h2>
