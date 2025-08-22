@@ -5,7 +5,6 @@ body {
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow: hidden;
 }
 
 .dashboard-container {
@@ -15,8 +14,14 @@ body {
 
 .dashboard-main {
   flex: 1;
-  padding: 15px;
-  overflow: auto;
+  padding: 30px;
+  overflow: hidden;
+}
+
+.page {
+  max-width: 1400px; /* wider cap for large monitors */
+  margin: 0 auto;
+  width: 100%;
 }
 
 .dashboard-body {
@@ -28,7 +33,7 @@ body {
 
 h2 {
   margin: 0;
-  font-size: 24px;
+  font-size: clamp(20px, 1.8vw, 26px); /* scales across laptop → monitor */
   color: #282886;
 }
 
@@ -37,11 +42,20 @@ p {
   color: #6b6b6b;
 }
 
-@media (max-width: 900px) {
-  .dashboard-main {
-    padding: 20px;
-  }
-  .dashboard-body {
-    flex-direction: column;
-  }
+/* Breakpoints */
+@media (max-width: 1400px) {
+  .page { max-width: 1200px; }
+}
+
+@media (max-width: 1200px) {
+  .dashboard-main { padding: 24px; }
+}
+
+@media (max-width: 992px) {
+  .dashboard-main { padding: 20px; }
+  .dashboard-body { flex-direction: column; gap: 16px; }
+}
+
+@media (max-width: 768px) {
+  .dashboard-main { padding: 16px; }
 }

@@ -9,6 +9,14 @@
 .expense-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  column-gap: 20px;
-  row-gap: 5px;
+  column-gap: 16px;
+  row-gap: 20px;
+}
+
+@media (max-width: 1200px) {
+  .expense-grid { grid-template-columns: repeat(2, minmax(240px, 1fr)); }
+}
+
+@media (max-width: 900px) {
+  .expense-grid { grid-template-columns: 1fr; }
 }

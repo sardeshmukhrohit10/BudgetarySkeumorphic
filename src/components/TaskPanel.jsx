@@ -66,7 +66,7 @@ export default function TaskPanel() {
           onClick={openOther}
           style={{background:"#f3f4f6", border:"1px solid #e5e7eb", padding:"8px 12px", borderRadius:10, fontWeight:600}}
         >
-          Other UI
+          Skeumorphic UI
         </button>
       </div>
     </div>
