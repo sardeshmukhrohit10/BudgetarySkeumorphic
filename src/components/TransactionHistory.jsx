@@ -3,18 +3,23 @@ import SummaryCards from "./SummaryCards";
 import AddTransactionModal from "./AddTransactionModal";
 import "./TransactionHistory.css";
 
-function TransactionHistory({ transactions, onAddTransaction, onDeleteTransaction, onEditTransaction }) {
+function TransactionHistory({
+  transactions,
+  onAddTransaction,
+  onDeleteTransaction,
+  onEditTransaction,
+}) {
   const [showModal, setShowModal] = useState(false);
   const [editingTxn, setEditingTxn] = useState(null);
   const [filter, setFilter] = useState("All");
   const [search, setSearch] = useState("");
 
   const income = transactions
-    .filter(txn => txn.type === "Income")
+    .filter((txn) => txn.type === "Income")
     .reduce((sum, txn) => sum + parseFloat(txn.amount), 0);
 
   const expense = transactions
-    .filter(txn => txn.type === "Expense")
+    .filter((txn) => txn.type === "Expense")
     .reduce((sum, txn) => sum + parseFloat(txn.amount), 0);
 
   const balance = income - expense;
@@ -25,29 +30,32 @@ function TransactionHistory({ transactions, onAddTransaction, onDeleteTransactio
   };
 
   const filteredTransactions = transactions.filter((txn) => {
-    // Filter by type
     if (filter === "Income" && txn.type !== "Income") return false;
     if (filter === "Expense" && txn.type !== "Expense") return false;
-    // Filter by search (description or category)
-    if (search && !txn.description.toLowerCase().includes(search.toLowerCase()) &&
-        !txn.category.toLowerCase().includes(search.toLowerCase())) return false;
+
+    if (
+      search &&
+      !txn.description.toLowerCase().includes(search.toLowerCase()) &&
+      !txn.category.toLowerCase().includes(search.toLowerCase())
+    ) {
+      return false;
+    }
     return true;
   });
 
   return (
-    <div className="dashboard-main">
-      <div className="dashboard-header">
-        <div>
-          <h2>Welcome</h2>
-          <p>Manage and view all your financial transactions</p>
-        </div>
-        <button className="add-transaction" onClick={() => { setEditingTxn(null); setShowModal(true); }}>
-          + Add Transaction
-        </button>
-      </div>
+    <div className="transactions-page">
+      <SummaryCards
+        summary={{ balance, income, expense }}
+        onAddClick={() => {
+          setEditingTxn(null);
+          setShowModal(true);
+        }}
+        title="Transaction History"
+        subtitle="Manage and view all your financial transactions"
+      />
 
-      <SummaryCards summary={{ balance, income, expense }} />
-
+      {/* Filters + Table */}
       <div className="transaction-table">
         <div className="table-header">
           <input
@@ -98,10 +106,13 @@ function TransactionHistory({ transactions, onAddTransaction, onDeleteTransactio
 
       {showModal && (
         <AddTransactionModal
-          onClose={() => { setShowModal(false); setEditingTxn(null); }}
+          onClose={() => {
+            setShowModal(false);
+            setEditingTxn(null);
+          }}
           onSubmit={(txn) => {
             if (editingTxn) {
-              onEditTransaction(txn); // txn now has proper id
+              onEditTransaction(txn);
             } else {
               onAddTransaction(txn);
             }

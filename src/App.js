@@ -6,7 +6,7 @@ import SummaryCards from "./components/SummaryCards";
 import ExpenseGrid from "./components/ExpenseGrid";
 import RecentTransactions from "./components/RecentTransactions";
 import AddTransactionModal from "./components/AddTransactionModal";
-import TransactionHistory from "./components/TransactionHistory"; // ⬅️ Add this
+import TransactionHistory from "./components/TransactionHistory";
 
 import "./App.css";
 
@@ -30,14 +30,12 @@ function App() {
   const balance = income - expense;
 
   const deleteTransaction = (txnToDelete) => {
-  setTransactions((prev) => prev.filter((txn) => txn !== txnToDelete));
+    setTransactions((prev) => prev.filter((txn) => txn !== txnToDelete));
   };
 
   const editTransaction = (updatedTxn) => {
     setTransactions((prev) =>
-      prev.map((txn) =>
-        txn.id === updatedTxn.id ? updatedTxn : txn
-      )
+      prev.map((txn) => (txn.id === updatedTxn.id ? updatedTxn : txn))
     );
   };
 
@@ -52,20 +50,10 @@ function App() {
               path="/"
               element={
                 <>
-                  <div className="dashboard-header">
-                    <div>
-                      <h2>Welcome</h2>
-                      <p>Here’s your financial overview for today</p>
-                    </div>
-                    <button
-                      className="add-transaction"
-                      onClick={() => setShowModal(true)}
-                    >
-                      + Add Transaction
-                    </button>
-                  </div>
-
-                  <SummaryCards summary={{ balance, income, expense }} />
+                  <SummaryCards
+                    summary={{ balance, income, expense }}
+                    onAddClick={() => setShowModal(true)}
+                  />
 
                   <div className="dashboard-body">
                     <ExpenseGrid transactions={transactions} />
