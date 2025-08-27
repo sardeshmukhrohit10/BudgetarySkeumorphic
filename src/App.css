@@ -19,7 +19,7 @@ body {
 }
 
 .page {
-  max-width: 1400px; /* wider cap for large monitors */
+  max-width: 1400px;
   margin: 0 auto;
   width: 100%;
 }
@@ -33,7 +33,7 @@ body {
 
 h2 {
   margin: 0;
-  font-size: clamp(20px, 1.8vw, 26px); /* scales across laptop → monitor */
+  font-size: clamp(20px, 1.8vw, 26px);
   color: #282886;
 }
 
@@ -42,7 +42,6 @@ p {
   color: #6b6b6b;
 }
 
-/* Breakpoints */
 @media (max-width: 1400px) {
   .page { max-width: 1200px; }
 }

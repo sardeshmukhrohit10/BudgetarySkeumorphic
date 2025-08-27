@@ -3,8 +3,9 @@
   padding: 20px;
   border-radius: 16px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
-  flex: 1;
-  height: 700px;
+  flex: 1 1 360px;
+  height: auto;
+  max-height: 700px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -23,12 +24,9 @@
   align-items: center;
   padding: 12px 0;
   border-bottom: 1px solid #eee;
-  flex-shrink: 0;
 }
 
-.transaction:last-child {
-  border-bottom: none;
-}
+.transaction:last-child { border-bottom: none; }
 
 .transaction p {
   margin: 4px 0 0;
@@ -36,14 +34,8 @@
   color: #777;
 }
 
-.txn-category {
-  color: #635bff;
-}
-
-.txn-amount {
-  font-weight: 600;
-  color: #1e1e50;
-}
+.txn-category { color: #635bff; }
+.txn-amount { font-weight: 600; color: #1e1e50; }
 
 .no-transactions {
   font-size: 14px;

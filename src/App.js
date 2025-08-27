@@ -9,7 +9,6 @@ import AddTransactionModal from "./components/AddTransactionModal";
 import TransactionHistory from "./components/TransactionHistory";
 
 import TaskPanel from "./components/TaskPanel";
-import DeviceGuard from "./components/DeviceGuard";
 import { initStudy, installCustomEventBridges } from "./studylogger";
 
 import "./App.css";
@@ -92,7 +91,6 @@ function App() {
 
   return (
     <Router>
-      <DeviceGuard>
         <div className="dashboard-container">
           <Sidebar />
           <main className="dashboard-main">
@@ -135,7 +133,6 @@ function App() {
         </div>
 
         <TaskPanel />
-      </DeviceGuard>
     </Router>
   );
 }

@@ -3,39 +3,29 @@
   margin-top: 20px;
   border-radius: 16px;
   padding: 24px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
 }
 
 .table-header {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   gap: 12px;
   margin-bottom: 20px;
-  flex-wrap: wrap;
 }
 
-.table-header input {
-  flex: 1 1 280px;
-  padding: 10px;
-  border-radius: 10px;
-  border: 1px solid #ddd;
-  background: #fff;
-}
-
+.table-header input,
 .table-header select {
   padding: 10px;
   border-radius: 10px;
   border: 1px solid #ddd;
   background: #fff;
 }
+.table-header input { flex: 1 1 260px; }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
+table { width: 100%; border-collapse: collapse; }
 
-th,
-td {
+th, td {
   padding: 12px;
   color: #444;
   border-bottom: 1px solid #eee;
@@ -43,10 +33,7 @@ td {
   text-align: center;
 }
 
-th {
-  color: #333;
-  font-weight: 600;
-}
+th { color: #333; font-weight: 600; }
 
 .amount-income { color: green; font-weight: 600; }
 .amount-expense { color: red; font-weight: 600; }
@@ -54,13 +41,11 @@ th {
 .txn-time { font-size: 12px; color: #888; }
 .actions { cursor: pointer; }
 
-/* Laptop screens */
 @media (max-width: 992px) {
   .transaction-table { padding: 16px; }
   .transaction-table table { display: block; overflow-x: auto; white-space: nowrap; }
 }
 
-/* Mobile cards */
 @media (max-width: 600px) {
   .transaction-table { padding: 12px; }
   table, thead, tbody, th, td, tr { display: block; }
