@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 999;
+  z-index: 20000;
   padding: 16px;
 }
 
@@ -20,7 +20,7 @@
 }
 
 .modal h2 {
-  margin: 0 0 6px;
+  margin: 0 0 6px 0;
   font-size: clamp(1.3rem, 1.2vw + 1rem, 1.6rem);
   color: #2c2c2c;
 }

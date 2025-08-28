@@ -9,6 +9,7 @@
   box-shadow:
     inset -4px -4px 6px #ffffff,
     inset 4px 4px 8px rgba(0, 0, 0, 0.08);
+  flex: 0 0 auto;
 }
 
 .logo {
@@ -30,7 +31,9 @@
   border-radius: 14px;
   font-size: 14px;
   cursor: pointer;
-  box-shadow: -3px -3px 6px #ffffff, 3px 3px 6px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    -3px -3px 6px #ffffff,
+    3px 3px 6px rgba(0, 0, 0, 0.1);
   color: #1e1e50;
   transition: transform 0.2s;
 }
@@ -41,8 +44,9 @@
 .nav-button.active {
   background-color: #635bff;
   color: #ffffff;
-  box-shadow: inset -2px -2px 4px rgba(255,255,255,0.5),
-              inset 2px 2px 4px rgba(0,0,0,0.1);
+  box-shadow:
+    inset -2px -2px 4px rgba(255, 255, 255, 0.5),
+    inset 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 992px) { .sidebar { width: 200px; } }

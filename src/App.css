@@ -16,6 +16,7 @@ body {
   flex: 1;
   padding: 30px;
   overflow: hidden;
+  min-width: 0;
 }
 
 .page {
@@ -55,6 +56,43 @@ p {
   .dashboard-body { flex-direction: column; gap: 16px; }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
+  .dashboard-container { flex-direction: column; }
+
+  .sidebar {
+    width: 100% !important;
+    min-height: auto !important;
+    padding: 12px 10px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+  }
+
   .dashboard-main { padding: 16px; }
+
+  .summary-row,
+  .expense-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  .transactions-box {
+    height: auto !important;
+    max-height: calc(100dvh - 220px) !important;
+    overflow-y: auto !important;
+  }
+
+  .transaction-table table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 380px) {
+  .transactions-box { max-height: calc(100dvh - 200px) !important; }
 }
