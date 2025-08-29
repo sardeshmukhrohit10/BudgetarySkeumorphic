@@ -1,18 +1,21 @@
 import React from "react";
 import "./SummaryCard.css";
-import { FaWallet, FaMoneyBillWave, FaFileInvoiceDollar } from "react-icons/fa";
+
+import balanceIcon from "../assets/icons8-ledger-emoji-48.png";
+import incomeIcon from "../assets/icons8-income-50.png";
+import expenseIcon from "../assets/icons8-expense-50.png";
 
 const iconMap = {
   balance: {
-    icon: <FaWallet />,
+    icon: balanceIcon,
     bg: "icon-balance",
   },
   income: {
-    icon: <FaMoneyBillWave />,
+    icon: incomeIcon,
     bg: "icon-income",
   },
   expense: {
-    icon: <FaFileInvoiceDollar />,
+    icon: expenseIcon,
     bg: "icon-expense",
   },
 };
@@ -26,9 +29,13 @@ const SummaryCard = ({ type, title, amount }) => {
   }
 
   return (
-    <div className="summary-card">
+    <div className={`summary-card ${type}`}>
       <div className={`icon-wrapper ${config.bg}`}>
-        {config.icon}
+        <img
+          src={config.icon}
+          alt={title}
+          className="summary-icon"
+        />
       </div>
       <div className="card-text">
         <p className="card-title">{title}</p>

@@ -1,21 +1,27 @@
 import React from "react";
 import "./ExpenseCard.css";
 
-// Import icons for categories (skeuomorphic-style icons from react-icons)
-import { FaWallet, FaUtensils, FaBook, FaPlane, FaHome, FaMedkit, FaGift, FaBeer, FaDonate } from "react-icons/fa";
+import foodIcon from "../assets/icons8-shopping-cart-32.png";
+import healthIcon from "../assets/icons8-doctors-bag-50.png";
+import travelIcon from "../assets/icons8-plane-60.png";
+import rentIcon from "../assets/icons8-home-50.png";
+import emergencyIcon from "../assets/icons8-emergency-50.png";
+import educationIcon from "../assets/icons8-books-emoji-48.png";
+import donationIcon from "../assets/icons8-donate-50.png";
+import partyIcon from "../assets/icons8-beer-50.png";
+import salaryIcon from "../assets/icons8-wallet-50.png";
 
 function ExpenseCard({ category, transactions }) {
-  // Map category to corresponding icon component
   const categoryIcons = {
-    "Food & Groceries": <FaUtensils />,
-    "Health Insurance": <FaMedkit />,
-    "Travel Expenses": <FaPlane />,
-    "Rent": <FaHome />,
-    "Emergency Expenses": <FaGift />,
-    "Education": <FaBook />,
-    "Donation": <FaDonate />,
-    "Party": <FaBeer />,
-    "Salary": <FaWallet />, // Keep wallet for income or default
+    "Food & Groceries": foodIcon,
+    "Health Insurance": healthIcon,
+    "Travel Expenses": travelIcon,
+    "Rent": rentIcon,
+    "Emergency Expenses": emergencyIcon,
+    "Education": educationIcon,
+    "Donation": donationIcon,
+    "Party": partyIcon,
+    "Salary": salaryIcon,
   };
 
   const total = transactions
@@ -25,7 +31,11 @@ function ExpenseCard({ category, transactions }) {
   return (
     <div className="expense-card">
       <div className="expense-icon-wrapper">
-        {categoryIcons[category] || <FaWallet />} {/* Fallback icon */}
+        <img
+          src={categoryIcons[category] || salaryIcon}
+          alt={category}
+          className="expense-icon"
+        />
       </div>
       <div className="expense-details">
         <span className="badge">This month</span>

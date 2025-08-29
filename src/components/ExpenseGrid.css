@@ -1,7 +1,6 @@
 .expense-container {
   background: #f9f9fb;
   padding: 30px;
-  border-radius: 20px;
   box-shadow: 0 12px 24px rgba(100, 100, 255, 0.08);
   border: 1px solid rgba(180, 180, 255, 0.2);
 }

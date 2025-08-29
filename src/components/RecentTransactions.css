@@ -1,7 +1,6 @@
 .transactions-box {
   background: #f9f9fb;
   padding: 20px;
-  border-radius: 16px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
   flex: 1 1 360px;
   height: auto;

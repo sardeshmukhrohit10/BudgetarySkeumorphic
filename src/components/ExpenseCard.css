@@ -1,14 +1,12 @@
 .expense-outer-box {
   background: #f9f9fb;
   padding: 10px;
-  border-radius: 20px;
   box-shadow: 0 12px 24px rgba(100, 100, 255, 0.08);
   border: 1px solid rgba(180, 180, 255, 0.2);
 }
 
 .expense-card {
   background: #ffffff;
-  border-radius: 16px;
   padding: 16px;
   display: flex;
   align-items: center;
@@ -20,17 +18,16 @@
     0 0 0 1px rgba(180, 180, 255, 0.15);
 }
 
-.expense-icon-wrapper {
-  background-color: #635bff;
+.expense-icon-wrapper img.expense-icon {
   color: white;
   font-size: 18px;
   padding: 10px;
-  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 40px;
   height: 40px;
+  object-fit: contain;
 }
 
 .expense-details { display: flex; flex-direction: column; }
